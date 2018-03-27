@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-
+import { Stock } from "./stocks";
 
 function chooseWinner(squares) {
 
@@ -186,4 +186,5 @@ class Game extends React.Component {
   }
 }
 
-ReactDOM.render(<Game />, document.getElementById("root"));
+// ReactDOM.render(<Game />, document.getElementById("root"));
+ReactDOM.render(<Stock />, document.getElementById("root"));
