@@ -81,7 +81,9 @@ export class Stock extends React.Component {
 
     handelSearchQuerry(event) {
         let typesStr = event.target.value;
-        let data = typesStr ? _.filter(this.state.stockList, item => (item.name.toLowerCase()).includes((typesStr.toLowerCase()))) : this.mockData;
+        let filterData = _.filter(this.state.stockList, item => (item.name.toLowerCase()).includes((typesStr.toLowerCase())));
+
+        let data = typesStr ? (filterData.length ? filterData : mockData) : mockData;
 
         this.setState({
             searchQuerry: typesStr,
@@ -97,7 +99,7 @@ export class Stock extends React.Component {
     }
 
     itemsInStock() {
-        let data = this.state.showAllProducts ? _.filter(this.state.stockList, item => item.stocked) : this.mockData;
+        let data = this.state.showAllProducts ? _.filter(this.state.stockList, item => item.stocked) : mockData;
         this.setState({
             showAllProducts: !this.state.showAllProducts,
             stockList: data
