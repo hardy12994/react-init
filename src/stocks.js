@@ -2,7 +2,7 @@ import React from "react";
 import * as _ from "underscore";
 import { mockData } from "./mockData";
 
-class ListGrids extends React.Component {
+class StockListGrids extends React.Component {
 
     constructor(props) {
         super(props);
@@ -30,7 +30,7 @@ class ListGrids extends React.Component {
     }
 
     render() {
-        let view = []
+        let view = [];
         for (const key in this.props.categorizeData) {
             let readyNodes = this.readyList(key, this.props.categorizeData[key]);
             view.push(readyNodes);
@@ -58,12 +58,31 @@ class StockListView extends React.Component {
                 <div className="col-md-1"><b>Name</b></div>
                 <div className="col-md-1"><b>Price</b></div>
             </div>
-            <ListGrids categorizeData={categorizeData} />
+            <StockListGrids categorizeData={categorizeData} />
         </div>);
     };
 
 }
 
+class Action extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
+                <h3>Stock Check</h3>
+                <input type="text" value={this.props.querry} onChange={this.props.handelSearchQuerry} placeholder="Search..." /><br /><br />
+                <span><input type="checkbox" onChange={this.props.handelItemsInStock} defaultChecked={!this.props.showAllProducts} /> <span>Only show products  in stock</span></span>
+                <br />
+                <br />
+                <StockListView stockList={this.props.stockList} />
+            </div>
+        );
+    }
+}
 
 export class Stock extends React.Component {
 
@@ -74,22 +93,8 @@ export class Stock extends React.Component {
             showAllProducts: true,
             searchQuerry: ''
         };
-        this.itemsInStock = this.itemsInStock.bind(this);
+        this.handelItemsInStock = this.handelItemsInStock.bind(this);
         this.handelSearchQuerry = this.handelSearchQuerry.bind(this);
-    }
-
-
-    handelSearchQuerry(event) {
-        let typesStr = event.target.value;
-        let filterData = _.filter(this.state.stockList, item => (item.name.toLowerCase()).includes((typesStr.toLowerCase())));
-
-        let data = typesStr ? (filterData.length ? filterData : mockData) : mockData;
-
-        this.setState({
-            searchQuerry: typesStr,
-            stockList: data
-        });
-
     }
 
     componentDidMount() {
@@ -98,11 +103,38 @@ export class Stock extends React.Component {
         });
     }
 
-    itemsInStock() {
-        let data = this.state.showAllProducts ? _.filter(this.state.stockList, item => item.stocked) : mockData;
+    getUpdatedList(querry = this.state.searchQuerry, showAll) {
+        let filteredStock;
+
+        if (!showAll) {
+            filteredStock = _.filter(mockData, item => item.stocked);
+        }
+
+        if (querry) {
+            let stock = filteredStock || mockData;
+            filteredStock = _.filter(stock, item => (item.name.toLowerCase()).includes((querry.toLowerCase())));
+        }
+        return (filteredStock || mockData);
+    }
+
+    handelSearchQuerry(event) {
+
+        let typesStr = event.target.value;
+        let updatedList = this.getUpdatedList(typesStr, this.state.showAllProducts);
+
+        this.setState({
+            searchQuerry: typesStr,
+            stockList: updatedList
+        });
+    }
+
+    handelItemsInStock() {
+
+        let updatedList = this.getUpdatedList(this.state.searchQuerry, !this.state.showAllProducts);
+
         this.setState({
             showAllProducts: !this.state.showAllProducts,
-            stockList: data
+            stockList: updatedList
         });
     }
 
@@ -110,17 +142,14 @@ export class Stock extends React.Component {
         const margin = {
             margin: '50px'
         }
-
         return (<div style={margin}>
-
-            <h3>Stock Check</h3>
-            <input type="text" value={this.state.searchQuerry} onChange={this.handelSearchQuerry} placeholder="Search..." /><br /><br />
-            <span><input type="checkbox" onChange={this.itemsInStock} defaultChecked={!this.state.showAllProducts} /> <span>Only show products  in stock</span></span>
-            <br />
-            <br />
-            <StockListView stockList={this.state.stockList} />
-
+            <Action
+                querry={this.state.searchQuerry}
+                handelItemsInStock={this.handelItemsInStock}
+                handelSearchQuerry={this.handelSearchQuerry}
+                stockList={this.state.stockList}
+                showAllProducts={this.state.showAllProducts}
+            />
         </div>);
     }
-
 }
