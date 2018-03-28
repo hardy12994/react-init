@@ -9,7 +9,7 @@ class StockListGrids extends React.Component {
     }
 
     readyList(listKey, list) {
-
+        
         let listView = list.map((item, index) =>
             <div className="row" key={index}>
                 <div className={!item.stocked ? "col-md-1 red" : "col-md-1"}>{item.name}</div>
@@ -51,7 +51,7 @@ class StockListView extends React.Component {
     }
 
     render() {
-        var categorizeData = _.groupBy(this.props.stockList, 'category');
+        var categorizeData = _.groupBy(this.props.stockList, "category");
 
         return (<div>
             <div className="row">
@@ -60,7 +60,7 @@ class StockListView extends React.Component {
             </div>
             <StockListGrids categorizeData={categorizeData} />
         </div>);
-    };
+    }
 
 }
 
@@ -91,7 +91,7 @@ export class Stock extends React.Component {
         this.state = {
             stockList: [],
             showAllProducts: true,
-            searchQuerry: ''
+            searchQuerry: ""
         };
         this.handelItemsInStock = this.handelItemsInStock.bind(this);
         this.handelSearchQuerry = this.handelSearchQuerry.bind(this);
@@ -140,8 +140,8 @@ export class Stock extends React.Component {
 
     render() {
         const margin = {
-            margin: '50px'
-        }
+            margin: "50px"
+        };
         return (<div style={margin}>
             <Action
                 querry={this.state.searchQuerry}
