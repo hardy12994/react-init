@@ -1,6 +1,6 @@
 import React from "react";
 import * as _ from "underscore";
-import { mockData } from "./mockData";
+import { mockData } from "../mock/mockData";
 
 class StockListGrids extends React.Component {
 
