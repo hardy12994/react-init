@@ -1,6 +1,7 @@
 import React from "react";
 import * as _ from "underscore";
-import { mockData } from "./mockData";
+import { mockData } from "../mock/mockData";
+import { Link } from "react-router-dom";
 
 class StockListGrids extends React.Component {
 
@@ -9,7 +10,7 @@ class StockListGrids extends React.Component {
     }
 
     readyList(listKey, list) {
-        
+
         let listView = list.map((item, index) =>
             <div className="row" key={index}>
                 <div className={!item.stocked ? "col-md-1 red" : "col-md-1"}>{item.name}</div>
@@ -143,6 +144,8 @@ export class Stock extends React.Component {
             margin: "50px"
         };
         return (<div style={margin}>
+            <Link to={"/"}>Back</Link>
+
             <Action
                 querry={this.state.searchQuerry}
                 handelItemsInStock={this.handelItemsInStock}
