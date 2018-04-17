@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import { Link } from "react-router-dom";
 
 function chooseWinner(squares) {
 
@@ -158,6 +158,7 @@ export class Game extends React.Component {
 
     return (
       <div className="shift">
+        <Link to={"/"}>Back</Link>
         <span>
           <h3>Tic - Tac - Toe</h3>
         </span>
@@ -184,6 +185,3 @@ export class Game extends React.Component {
     );
   }
 }
-
-// ReactDOM.render(<Game />, document.getElementById("root"));
-// ReactDOM.render(<Stock />, document.getElementById("root"));

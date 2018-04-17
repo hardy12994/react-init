@@ -1,10 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-
-import { Stock } from "./stocks/stocks";
-import { Game } from "./tictactoe/tictactoe";
+import { AppConfig } from "./app";
+import "./css/index.css";
 
 
-// ReactDOM.render(<Game />, document.getElementById("root"));
-ReactDOM.render(<Stock />, document.getElementById("root"));
+class Root extends Component {
+
+    render() {
+        return (
+           <AppConfig></AppConfig>
+        );
+    }
+}
+
+ReactDOM.render(<Root />, document.getElementById("root"));

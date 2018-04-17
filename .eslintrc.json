@@ -16,11 +16,8 @@
     ],
     "rules": {
         "no-unused-vars":"off",
+        "no-console":"off",
         "indent":"off",
-        // "indent": [
-        //     "error",
-        //     4
-        // ],
         "linebreak-style": [
             "error",
             "unix"
