@@ -158,7 +158,6 @@ export class Tictactoe extends Component {
 
     return (
       <div className="shift">
-        <Link to={"/"}>Back</Link>
         <span>
           <h3>Tic - Tac - Toe</h3>
         </span>
