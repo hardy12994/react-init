@@ -7,7 +7,7 @@ export const BaseComponet = () => (
         <h4> Click the Links below - </h4>
         <ul>
             <li>
-                <Link to={"/game"}>Want to Play Game ?</Link>
+                <Link to={"/games"}>Want to Play Game ?</Link>
             </li>
             <li>
                 <Link to={"/stock-market"}>Stock Market?</Link>

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import * as _ from "underscore";
 import { mockData } from "../mock/mockData";
 import { Link } from "react-router-dom";
 
-class StockListGrids extends React.Component {
+class StockListGrids extends Component {
 
     constructor(props) {
         super(props);
@@ -45,7 +45,7 @@ class StockListGrids extends React.Component {
     }
 }
 
-class StockListView extends React.Component {
+class StockListView extends Component {
 
     constructor(props) {
         super(props);
@@ -65,7 +65,7 @@ class StockListView extends React.Component {
 
 }
 
-class Action extends React.Component {
+class Action extends Component {
 
     constructor(props) {
         super(props);
@@ -85,7 +85,7 @@ class Action extends React.Component {
     }
 }
 
-export class Stock extends React.Component {
+export class Stock extends Component {
 
     constructor() {
         super();
@@ -144,7 +144,7 @@ export class Stock extends React.Component {
             margin: "50px"
         };
         return (<div style={margin}>
-            <Link to={"/"}>Back</Link>
+            <Link to={"/"}> Back </Link>
 
             <Action
                 querry={this.state.searchQuerry}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 
@@ -30,7 +30,7 @@ function chooseWinner(squares) {
 
 
 
-class BoardBox extends React.Component {
+class BoardBox extends Component {
 
   constructor() {
     super();
@@ -45,7 +45,7 @@ class BoardBox extends React.Component {
 
 
 
-class Board extends React.Component {
+class Board extends Component {
 
 
   constructor() {
@@ -85,7 +85,7 @@ class Board extends React.Component {
 
 
 
-export class Game extends React.Component {
+export class Tictactoe extends Component {
 
   constructor() {
     super();
